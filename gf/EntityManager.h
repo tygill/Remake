@@ -21,11 +21,16 @@ namespace gf {
     
         bool exists(EntityId entId) const;
         bool destroy(EntityId entId);
+
+        ComponentTypes componentTypes(EntityId entId) const;
     
         template<class T> ComponentPtr<T> addComponent(EntityId entId);
         template<class T> bool hasComponent(EntityId entId) const;
+        bool hasComponent(ComponentType type, EntityId entId) const;
         template<class T> ComponentPtr<T> getComponent(EntityId entId) const;
+        ComponentPtr<Component> getComponent(ComponentType type, EntityId entId) const;
         template<class T> bool removeComponent(EntityId entId);
+        bool removeComponent(ComponentType type, EntityId entId);
     
         Entity entity(EntityId entId) const;
     

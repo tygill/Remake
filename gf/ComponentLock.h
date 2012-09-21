@@ -11,11 +11,8 @@ namespace gf {
     {
     public:
         ComponentLock(ComponentType t, bool lockNow = true, bool isUniqueLock = true);
+        //ComponentLock(const ComponentLock& other);
         ~ComponentLock();
-
-        //void lock(ComponentType type, bool isUniqueLock = true);
-        //void getReadLock(ComponentType type);
-        //void getReadWriteLock(ComponentType type);
 
         void lock();
         void unlock();

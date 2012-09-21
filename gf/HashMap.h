@@ -17,12 +17,25 @@ namespace gf {
 
         int size() const;
         bool empty() const;
+
+        class Enumerator {
+        public:
+            Enumerator(const HashMap& owner);
+            ~Enumerator();
     
-        // C# style iterators
-        void reset();
-        bool moveNext();
-        T currentKey() const;
-        U currentValue() const;
+            // C# style iterators
+            void reset();
+            bool moveNext();
+            T currentKey() const;
+            U currentValue() const;
+
+        private:
+            const HashMap& ownedBy;
+            boost::unordered_map<T, U>::const_iterator itr;
+
+        }
+
+        Enumerator enumerator() const;
 
     private:
         boost::unordered_map<T, U> values;

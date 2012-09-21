@@ -30,6 +30,7 @@ set(GameFrame_LIB_CXX
     "OrderedSet.cpp"
     "PtrHashMap.cpp"
     "PtrHashMultimap.cpp"
+    "PtrOrderedMap.cpp"
     "PtrOrderedSet.cpp"
     "Queue.cpp"
     "Resource.cpp"

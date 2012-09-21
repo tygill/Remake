@@ -10,11 +10,9 @@ namespace gf {
     class Entities
     {
     public:
-        //template<class T> Entities(EntityIds ids, T readWriteBegin, T readWriteEnd, bool lockNow = true);
-        //template<class T> Entities(EntityIds ids, T readWriteBegin, T readWriteEnd, T readOnlyBegin, T readOnlyEnd, bool lockNow = true);
+        Entities();
         Entities(EntityIds ids, ComponentTypes readWrite, bool lockNow = true);
         Entities(EntityIds ids, ComponentTypes readWrite, ComponentTypes readOnly, bool lockNow = true);
-        Entities();
         ~Entities();
 
         int size() const;

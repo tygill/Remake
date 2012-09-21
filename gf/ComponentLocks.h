@@ -5,16 +5,14 @@
 #include "gf/Globals.h"
 #include "gf/ComponentLock.h"
 #include "gf/HashSet.h"
+#include "gf/ComponentTypes.h"
+#include "gf/PtrOrderedMap.h"
 
 namespace gf {
 
     class ComponentLocks
     {
     public:
-        ComponentLocks();
-        // T should be an iterator over ComponentType objects
-        //template<class T> ComponentLocks(T uniqueBegin, T uniqueEnd, bool lockNow = true);
-        //template<class T> ComponentLocks(T uniqueBegin, T uniqueEnd, T sharedBegin, T sharedEnd, bool lockNow = true);
         ComponentLocks(ComponentTypes unique, bool lockNow = true);
         ComponentLocks(ComponentTypes unique, ComponentTypes shared, bool lockNow = true);
         ~ComponentLocks();
@@ -24,16 +22,12 @@ namespace gf {
         bool locked() const;
 
     private:
-        void init(std::set<ComponentType> unique, std::set<ComponentType> shared);
+        void init(ComponentTypes unique, ComponentTypes shared, bool lockNow);
 
     private:
-        HashSet<ComponentLock> locks;
+        PtrOrderedMap<ComponentType, ComponentLock> locks;
+        bool isLocked;
+
     };
-
-    template<class T> ComponentLocks::ComponentLocks(T uniqueBegin, T uniqueEnd, bool lockNow = true)
-        : ComponentLocks(std::set<ComponentType>(uniqueBegin, uniqueEnd), lockNow) {}
-
-    template<class T> ComponentLocks::ComponentLocks(T uniqueBegin, T uniqueEnd, T sharedBegin, T sharedEnd, bool lockNow = true)
-        : ComponentLocks(std::set<ComponentType>(uniqueBegin, uniqueEnd), std::set<ComponentType>(sharedBegin, sharedEnd), lockNow) {}
 
 }

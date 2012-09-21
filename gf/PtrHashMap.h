@@ -22,7 +22,7 @@ namespace gf {
         void reset();
         bool moveNext();
         T currentKey() const;
-        U currentValue() const;
+        U& currentValue() const;
 
     private:
         boost::ptr_unordered_map<T, U> values;

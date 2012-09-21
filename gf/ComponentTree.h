@@ -4,6 +4,7 @@
 #include "gf/OrderedSet.h"
 #include "gf/PtrHashMap.h"
 #include "gf/EntityIds.h"
+#include "gf/EntitySystem.h"
 #include "gf/EntitySystems.h"
 
 namespace gf {
@@ -32,8 +33,8 @@ namespace gf {
         //void cacheComponents(EntityId entId);
         void removeEntity(EntityId entId);
         
-        //void registerSystem(EntitySystem* system, ComponentType type);
-        //void registerSystem(EntitySystem* system, const ComponentTypes& types);
+        void registerSystem(EntitySystem* system, ComponentType type);
+        void registerSystem(EntitySystem* system, const ComponentTypes& types);
 
     private:
         // Convenience typedef to make things easier to read
@@ -51,6 +52,7 @@ namespace gf {
 
     private:
         boost::scoped_ptr<Node> root;
+        // This should possibly be moved to the EntityManager, to be used when initializing Entity objects.
         HashMap<EntityId, ComponentTypes> componentTypesByEntity;
     };
 

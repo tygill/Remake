@@ -31,6 +31,9 @@ namespace gf {
         boost::shared_ptr<T> component;
         ComponentLock lock;
     };
+    
+    template<class T> ComponentPtr::ComponentPtr(T* comp, bool lockNow = true, bool isUniqueLock = true)
+            : component(comp), lock(Component::componentType<T>(), lockNow, isUniqueLock) {}
 
     template<class T> ComponentPtr::ComponentPtr(boost::shared_ptr<T> comp, bool lockNow = true, bool isUniqueLock = true)
             : component(comp), lock(Component::componentType<T>(), lockNow, isUniqueLock) {}

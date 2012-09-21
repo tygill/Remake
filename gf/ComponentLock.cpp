@@ -12,6 +12,11 @@ namespace gf {
         }
     }
 
+    /*ComponentLock::ComponentLock(const ComponentLock& other)
+        : sharedLock(other.sharedLock), uniqueLock(other.uniqueLock), type(other.type), useUniqueLock(other.useUniqueLock)
+    {
+    }*/
+
     ComponentLock::~ComponentLock()
     {
         // Unlocking is implicit with the smart pointers

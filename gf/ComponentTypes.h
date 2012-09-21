@@ -2,6 +2,7 @@
 #include <boost/unordered_set.hpp>
 
 #include "gf/Globals.h"
+#include "gf/OrderedSet.h"
 
 namespace gf {
 
