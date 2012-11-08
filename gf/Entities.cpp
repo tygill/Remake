@@ -2,13 +2,4 @@
 
 namespace gf {
 
-    Entities::Entities()
-    {
-    }
-
-
-    Entities::~Entities()
-    {
-    }
-
 }

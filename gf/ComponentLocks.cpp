@@ -2,13 +2,13 @@
 
 namespace gf {
 
-    ComponentLocks::ComponentLocks(ComponentTypes unique = ComponentTypes(), bool lockNow = true)
+    ComponentLocks::ComponentLocks(ComponentTypes unique, bool lockNow)
         : isLocked(false)
     {
         init(unique, ComponentTypes(), lockNow);
     }
     
-    ComponentLocks::ComponentLocks(ComponentTypes unique, ComponentTypes shared, bool lockNow = true)
+    ComponentLocks::ComponentLocks(ComponentTypes unique, ComponentTypes shared, bool lockNow)
         : isLocked(false)
     {
         init(unique, shared, lockNow);
@@ -21,17 +21,17 @@ namespace gf {
     void ComponentLocks::lock() {
         // Iterating over all locks MUST be done in increasing order (enforced by using an PtrOrderedMap, which orders by ComponentType)
         // This will prevent deadlock that would otherwise be caused by two sets of locks attempting to lock the same thing in different orders.
-        locks.reset();
-        while (locks.moveNext()) {
-            locks.currentValue().lock();
+        Enumerator itr = locks.enumerator();
+        while (itr.moveNext()) {
+            itr.currentValue().lock();
         }
         isLocked = true;
     }
 
     void ComponentLocks::unlock() {
-        locks.reset();
-        while (locks.moveNext()) {
-            locks.currentValue().unlock();
+        Enumerator itr = locks.enumerator();
+        while (itr.moveNext()) {
+            itr.currentValue().unlock();
         }
         isLocked = false;
     }
@@ -41,14 +41,14 @@ namespace gf {
     }
 
     void ComponentLocks::init(ComponentTypes unique, ComponentTypes shared, bool lockNow) {
-        unique.reset();
-        while (unique.moveNext()) {
-            locks.add(unique.current(), new ComponentLock(unique.current(), lockNow, true));
+        ComponentTypes::Enumerator itr = unique.enumerator();
+        while (itr.moveNext()) {
+            locks.add(itr.current(), new ComponentLock(itr.current(), lockNow, true));
         }
 
-        shared.reset();
-        while (shared.moveNext()) {
-            locks.add(shared.current(), new ComponentLock(shared.current(), lockNow, true));
+        itr = shared.enumerator();
+        while (itr.moveNext()) {
+            locks.add(itr.current(), new ComponentLock(itr.current(), lockNow, true));
         }
 
         if (lockNow) {

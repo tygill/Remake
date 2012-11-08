@@ -59,7 +59,7 @@ namespace gf {
 
     EntitySetNotCachedException::EntitySetNotCachedException(const ComponentTypes& t) throw() :
         GameFrameException("The set of entities requested was not registered to be cached."),
-        cTypes(t.begin(), t.end())
+        cTypes(t)
     {
     }
 
@@ -89,4 +89,13 @@ namespace gf {
     ResourceId ResourceNotFoundException::id() const throw() {
         return resId;
     }
+
+    // InvalidContainerAccessException
+    // -------------------------------
+
+    InvalidContainerAccessException::InvalidContainerAccessException(const std::string& message) throw()
+        : GameFrameException(message) {}
+
+    InvalidContainerAccessException::~InvalidContainerAccessException() {}
+
 }

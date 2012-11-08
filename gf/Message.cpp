@@ -2,13 +2,4 @@
 
 namespace gf {
 
-    Messages::Messages()
-    {
-    }
-
-
-    Messages::~Messages()
-    {
-    }
-
 }

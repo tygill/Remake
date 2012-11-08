@@ -2,13 +2,4 @@
 
 namespace gf {
 
-    HashSet::HashSet()
-    {
-    }
-
-
-    HashSet::~HashSet()
-    {
-    }
-
 }

@@ -2,13 +2,4 @@
 
 namespace gf {
 
-    EntityIds::EntityIds()
-    {
-    }
-
-
-    EntityIds::~EntityIds()
-    {
-    }
-
 }

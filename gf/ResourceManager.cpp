@@ -2,13 +2,4 @@
 
 namespace gf {
 
-    ResourceManagers::ResourceManager()
-    {
-    }
-
-
-    ResourceManagers::~ResourceManager()
-    {
-    }
-
 }

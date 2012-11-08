@@ -2,13 +2,4 @@
 
 namespace gf {
 
-    OrderedSet::OrderedSet()
-    {
-    }
-
-
-    OrderedSet::~OrderedSet()
-    {
-    }
-
 }

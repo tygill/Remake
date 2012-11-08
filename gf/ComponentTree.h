@@ -3,6 +3,7 @@
 #include "gf/Globals.h"
 #include "gf/OrderedSet.h"
 #include "gf/PtrHashMap.h"
+#include "gf/HashMap.h"
 #include "gf/EntityIds.h"
 #include "gf/EntitySystem.h"
 #include "gf/EntitySystems.h"

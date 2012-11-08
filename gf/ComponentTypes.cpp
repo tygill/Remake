@@ -2,13 +2,4 @@
 
 namespace gf {
 
-    ComponentTypes::ComponentTypes()
-    {
-    }
-
-
-    ComponentTypes::~ComponentTypes()
-    {
-    }
-
 }

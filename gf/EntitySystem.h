@@ -3,8 +3,10 @@
 
 #include "gf/Globals.h"
 #include "gf/Queue.h"
-#include "gf/GameFrame.h"
+//#include "gf/GameFrame.h" // Causes circular dependency issues
+namespace gf { class GameFrame; }
 #include "gf/ComponentTypes.h"
+#include "gf/MessagePtr.h"
 
 namespace gf {
 
@@ -59,7 +61,7 @@ namespace gf {
     private:
         typedef std::pair<EntityId, ComponentTypes> EntityQueueNode;
         typedef Queue<EntityQueueNode> EntityQueue;
-        typedef Queue<MessagePtr<Message> > MessageQueue;
+        typedef Queue<MessagePtr<Message const> > MessageQueue;
 
     private:
         GameFrame* gameFrame;

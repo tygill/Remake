@@ -22,6 +22,9 @@ namespace gf {
         bool locked() const;
 
     private:
+        typedef PtrOrderedMap<ComponentType, ComponentLock>::Enumerator Enumerator;
+
+    private:
         void init(ComponentTypes unique, ComponentTypes shared, bool lockNow);
 
     private:

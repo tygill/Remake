@@ -5,6 +5,8 @@
 namespace gf {
     
     typedef uint32_t EntityId;
+    typedef uint32_t ResourceId;
+    typedef uint32_t MessageId;
     typedef uint32_t ComponentType;
     typedef uint32_t MessageType;
     typedef uint32_t ResourceType;

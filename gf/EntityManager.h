@@ -55,7 +55,6 @@ namespace gf {
     private:
         HashMap<EntityId, InternalEntity> entities;
         ComponentTree componentTree;
-
     };
 
 }

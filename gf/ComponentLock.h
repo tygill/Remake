@@ -11,16 +11,24 @@ namespace gf {
     {
     public:
         ComponentLock(ComponentType t, bool lockNow = true, bool isUniqueLock = true);
-        //ComponentLock(const ComponentLock& other);
+        // This is used to copy a lock so that both locks reference the same mutex.
+        // If its copied before being locked, and both the original and the copy are
+        // locked independently, then two locks will be created.
+        // If it is copied after locking, there will be two references to the same lock.
+        ComponentLock(const ComponentLock& other);
         ~ComponentLock();
 
         void lock();
         void unlock();
         bool locked() const;
+        bool unique() const;
 
         // This is to allow ComponentLocks to be stored in an ordered set, so that locks are acquired in increasing order.
         // If locks are always acquired in increasing order whenever multiple locks need to be made, deadlocks will never occur.
         bool operator<(const ComponentLock& other) const;
+
+        // TODO: Is this really necessary? I'm still on the fence here...
+        ComponentLock& operator=(const ComponentLock& other);
 
         // Alternatively, we could just use a lambda expression and the ComponentType
         ComponentType componentType() const;

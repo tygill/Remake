@@ -2,13 +2,4 @@
 
 namespace gf {
 
-    EntitySystem::EntitySystem()
-    {
-    }
-
-
-    EntitySystem::~EntitySystem()
-    {
-    }
-
 }

@@ -3,6 +3,7 @@
 #include <string>
 
 #include "gf/Globals.h"
+#include "gf/ComponentTypes.h"
 
 namespace gf {
     
@@ -67,7 +68,12 @@ namespace gf {
         ResourceId resId;
 
     };
+
+    class InvalidContainerAccessException : public GameFrameException {
+    public:
+        InvalidContainerAccessException(const std::string& message) throw();
+        ~InvalidContainerAccessException();
+    };
     
 }
 
-#endif // header

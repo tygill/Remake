@@ -4,7 +4,7 @@ namespace gf {
 
     PtrHashMap<ComponentType, boost::shared_mutex> ComponentLock::componentMutexes;
 
-    ComponentLock::ComponentLock(ComponentType t, bool lockNow = true, bool isUniqueLock = true)
+    ComponentLock::ComponentLock(ComponentType t, bool lockNow, bool isUniqueLock)
         : type(t), useUniqueLock(isUniqueLock)
     {
         if (lockNow) {
@@ -12,10 +12,8 @@ namespace gf {
         }
     }
 
-    /*ComponentLock::ComponentLock(const ComponentLock& other)
-        : sharedLock(other.sharedLock), uniqueLock(other.uniqueLock), type(other.type), useUniqueLock(other.useUniqueLock)
-    {
-    }*/
+    ComponentLock::ComponentLock(const ComponentLock& other)
+        : sharedLock(other.sharedLock), uniqueLock(other.uniqueLock), type(other.type), useUniqueLock(other.useUniqueLock) {}
 
     ComponentLock::~ComponentLock()
     {
@@ -41,8 +39,20 @@ namespace gf {
         return uniqueLock || sharedLock;
     }
 
+    bool ComponentLock::unique() const {
+        return useUniqueLock;
+    }
+
     bool ComponentLock::operator<(const ComponentLock& other) const {
         return type < other.type;
+    }
+
+    ComponentLock& ComponentLock::operator=(const ComponentLock& other) {
+        sharedLock = other.sharedLock;
+        uniqueLock = other.uniqueLock;
+        type = other.type;
+        useUniqueLock = other.useUniqueLock;
+        return *this;
     }
 
     ComponentType ComponentLock::componentType() const {

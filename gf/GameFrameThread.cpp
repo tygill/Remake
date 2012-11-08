@@ -2,13 +2,4 @@
 
 namespace gf {
 
-    GameFrameThread::GameFrameThread()
-    {
-    }
-
-
-    GameFrameThread::~GameFrameThread()
-    {
-    }
-
 }
