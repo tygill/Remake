@@ -14,8 +14,17 @@ namespace gf {
         init(unique, shared, lockNow);
     }
 
+    ComponentLocks::ComponentLocks(const ComponentLocks& other)
+        : locks(other.locks), isLocked(other.isLocked) {}
+
     ComponentLocks::~ComponentLocks()
     {
+    }
+
+    ComponentLocks& ComponentLocks::operator=(const ComponentLocks& other) {
+        locks = other.locks;
+        isLocked = other.isLocked;
+        return *this;
     }
 
     void ComponentLocks::lock() {

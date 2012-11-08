@@ -11,6 +11,8 @@ namespace gf {
         HashMap(const HashMap& other);
         ~HashMap();
 
+        HashMap& operator=(const HashMap& other);
+
         bool contains(T key) const;
         U get(T key) const;
         bool add(T key, U value);
@@ -48,10 +50,15 @@ namespace gf {
     
     template<class T, class U> HashMap<T, U>::HashMap() {}
 
-    template<class T, class U> HashMap<T, U>::HashMap(const HashMap& other)
+    template<class T, class U> HashMap<T, U>::HashMap(const HashMap<T, U>& other)
         : values(other.values) {}
 
     template<class T, class U> HashMap<T, U>::~HashMap() {}
+
+    template<class T, class U> HashMap<T, U>& HashMap<T, U>::operator=(const HashMap<T, U>& other) {
+        values = other.values;
+        return *this;
+    }
 
     template<class T, class U> bool HashMap<T, U>::contains(T key) const {
         return values.find(key) != values.end();

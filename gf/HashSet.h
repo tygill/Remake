@@ -12,6 +12,8 @@ namespace gf {
         HashSet(const HashSet& other);
         ~HashSet();
 
+        HashSet& operator=(const HashSet& other);
+
         bool contains(T value) const;
         bool add(T value);
         bool remove(T value);
@@ -47,10 +49,15 @@ namespace gf {
     
     template<class T> HashSet<T>::HashSet() {}
 
-    template<class T> HashSet<T>::HashSet(const HashSet& other)
+    template<class T> HashSet<T>::HashSet(const HashSet<T>& other)
         : values(other.values) {}
 
     template<class T> HashSet<T>::~HashSet() {}
+
+    template<class T> HashSet<T>& HashSet<T>::operator=(const HashSet<T>& other) {
+        values = other.values;
+        return *this;
+    }
 
     template<class T> bool HashSet<T>::contains(T value) const {
         return values.find(value) != values.end();

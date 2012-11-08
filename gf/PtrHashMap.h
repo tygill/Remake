@@ -11,6 +11,8 @@ namespace gf {
         PtrHashMap(const PtrHashMap& other);
         ~PtrHashMap();
 
+        PtrHashMap& operator=(const PtrHashMap& other);
+
         bool contains(T key) const;
         const U& get(T key) const;
         U& get(T key);
@@ -50,10 +52,15 @@ namespace gf {
 
     template<class T, class U> PtrHashMap<T, U>::PtrHashMap() {}
 
-    template<class T, class U> PtrHashMap<T, U>::PtrHashMap(const PtrHashMap& other)
+    template<class T, class U> PtrHashMap<T, U>::PtrHashMap(const PtrHashMap<T, U>& other)
         : values(other.values) {}
 
     template<class T, class U> PtrHashMap<T, U>::~PtrHashMap() {}
+
+    template<class T, class U> PtrHashMap<T, U>& PtrHashMap<T, U>::operator=(const PtrHashMap<T, U>& other) {
+        values = other.values;
+        return *this;
+    }
 
     template<class T, class U> bool PtrHashMap<T, U>::contains(T key) const {
         return values.find(key) != values.end();

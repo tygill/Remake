@@ -10,6 +10,8 @@ namespace gf {
         PtrOrderedSet(const PtrOrderedSet& other);
         ~PtrOrderedSet();
 
+        PtrOrderedSet& operator=(const PtrOrderedSet& other);
+
         bool contains(T* value) const;
         bool add(T* value);
         bool remove(T* value);
@@ -52,6 +54,11 @@ namespace gf {
         : values(other.values) {}
 
     template<class T> PtrOrderedSet<T>::~PtrOrderedSet() {}
+
+    template<class T> PtrOrderedSet<T>& PtrOrderedSet<T>::operator=(const PtrOrderedSet<T>& other) {
+        values = other.values;
+        return *this;
+    }
 
     template<class T> bool PtrOrderedSet<T>::contains(T* value) const {
         return values.find(value) != values.end();

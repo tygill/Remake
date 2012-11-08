@@ -11,6 +11,8 @@ namespace gf {
         PtrHashMultimap(const PtrHashMultimap& other);
         ~PtrHashMultimap();
 
+        PtrHashMultimap& operator=(const PtrHashMultimap& other);
+
         bool contains(T key) const;
         U& get(T key) const; // This will only get the first of the given key
         bool add(T key, U* value);
@@ -53,10 +55,15 @@ namespace gf {
 
     template<class T, class U> PtrHashMultimap<T, U>::PtrHashMultimap() {}
 
-    template<class T, class U> PtrHashMultimap<T, U>::PtrHashMultimap(const PtrHashMultimap& other)
+    template<class T, class U> PtrHashMultimap<T, U>::PtrHashMultimap(const PtrHashMultimap<T, U>& other)
         : values(other.values) {}
 
     template<class T, class U> PtrHashMultimap<T, U>::~PtrHashMultimap() {}
+
+    template<class T, class U> PtrHashMultimap<T, U>& PtrHashMultimap<T, U>::operator=(const PtrHashMultimap<T, U>& other) {
+        values = other.values;
+        return *this;
+    }
 
     template<class T, class U> bool PtrHashMultimap<T, U>::contains(T key) const {
         return values.find(key) != values.end();

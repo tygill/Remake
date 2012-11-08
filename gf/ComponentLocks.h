@@ -15,7 +15,10 @@ namespace gf {
     public:
         ComponentLocks(ComponentTypes unique, bool lockNow = true);
         ComponentLocks(ComponentTypes unique, ComponentTypes shared, bool lockNow = true);
+        ComponentLocks(const ComponentLocks& other);
         ~ComponentLocks();
+
+        ComponentLocks& operator=(const ComponentLocks& other);
 
         void lock();
         void unlock();

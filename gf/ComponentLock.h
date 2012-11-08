@@ -18,6 +18,8 @@ namespace gf {
         ComponentLock(const ComponentLock& other);
         ~ComponentLock();
 
+        ComponentLock& operator=(const ComponentLock& other);
+
         void lock();
         void unlock();
         bool locked() const;
@@ -26,9 +28,6 @@ namespace gf {
         // This is to allow ComponentLocks to be stored in an ordered set, so that locks are acquired in increasing order.
         // If locks are always acquired in increasing order whenever multiple locks need to be made, deadlocks will never occur.
         bool operator<(const ComponentLock& other) const;
-
-        // TODO: Is this really necessary? I'm still on the fence here...
-        ComponentLock& operator=(const ComponentLock& other);
 
         // Alternatively, we could just use a lambda expression and the ComponentType
         ComponentType componentType() const;

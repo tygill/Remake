@@ -13,6 +13,8 @@ namespace gf {
         OrderedSet(const OrderedSet& other);
         ~OrderedSet();
 
+        OrderedSet& operator=(const OrderedSet& other);
+
         bool contains(T value) const;
         bool add(T value);
         bool remove(T value);
@@ -49,13 +51,15 @@ namespace gf {
 
     template<class T> OrderedSet<T>::OrderedSet() {}
 
-    //template<class T, class Itr> OrderedSet<T>::OrderedSet(Itr begin, Itr end)
-    //    : values(begin, end) {}
-
-    template<class T> OrderedSet<T>::OrderedSet(const OrderedSet& other)
+    template<class T> OrderedSet<T>::OrderedSet(const OrderedSet<T>& other)
         : values(other.values) {}
 
     template<class T> OrderedSet<T>::~OrderedSet() {}
+
+    template<class T> OrderedSet<T>& OrderedSet<T>::operator=(const OrderedSet<T>& other) {
+        values = other.values;
+        return *this;
+    }
 
     template<class T> bool OrderedSet<T>::contains(T value) const {
         return values.find(value) != values.end();

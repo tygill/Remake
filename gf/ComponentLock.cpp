@@ -19,6 +19,14 @@ namespace gf {
     {
         // Unlocking is implicit with the smart pointers
     }
+    
+    ComponentLock& ComponentLock::operator=(const ComponentLock& other) {
+        sharedLock = other.sharedLock;
+        uniqueLock = other.uniqueLock;
+        type = other.type;
+        useUniqueLock = other.useUniqueLock;
+        return *this;
+    }
 
     void ComponentLock::lock() {
         // Make sure the other type of lock isn't set
@@ -45,14 +53,6 @@ namespace gf {
 
     bool ComponentLock::operator<(const ComponentLock& other) const {
         return type < other.type;
-    }
-
-    ComponentLock& ComponentLock::operator=(const ComponentLock& other) {
-        sharedLock = other.sharedLock;
-        uniqueLock = other.uniqueLock;
-        type = other.type;
-        useUniqueLock = other.useUniqueLock;
-        return *this;
     }
 
     ComponentType ComponentLock::componentType() const {
